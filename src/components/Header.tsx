@@ -12,6 +12,7 @@ export default function Header({ activeCategory }: HeaderProps) {
     { href: '/internal-medicine', label: 'Internal Medicine', id: 'internal-medicine' },
     { href: '/smokable', label: 'Smokable', id: 'smokable' },
     { href: '/wellness', label: 'Wellness', id: 'wellness' },
+    { href: '/plant-care', label: 'Plant Care', id: 'plant-care' },
   ];
 
   return (

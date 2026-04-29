@@ -2,12 +2,12 @@ export interface Product {
   id: string;
   name: string;
   sanskritName?: string;
-  category: 'hair-care' | 'internal-medicine' | 'smokable' | 'wellness';
+  category: 'hair-care' | 'internal-medicine' | 'smokable' | 'wellness' | 'plant-care';
   subcategory?: string;
   size: string;
   price: number;
-  vijayaMg: number;
-  vijayaType: 'Decarbed' | 'Non-Decarbed' | 'Shodhit Leaf';
+  vijayaMg?: number;
+  vijayaType?: 'Decarbed' | 'Non-Decarbed' | 'Shodhit Leaf';
   description: string;
   shortDescription: string;
   keyIngredients: string[];
@@ -15,6 +15,10 @@ export interface Product {
   usage: string;
   tags: string[];
   complianceNote?: string;
+  // Plant Care specific fields
+  npkAnalysis?: { nitrogen: string; phosphorus: string; potassium: string; organicMatter: string; protein: string; cnRatio: string };
+  applicationGuide?: { type: string; dosage: string; frequency: string }[];
+  liquidActivation?: { steps: string[] };
 }
 
 export interface SmokableBlend {
@@ -348,6 +352,126 @@ export const products: Product[] = [
     usage: 'Apply to lower abdomen. Massage in circular motion. Use as needed during menstrual cycle.',
     tags: ["Women's Health", 'Pain Relief', 'Period Care'],
   },
+
+  // ===== PLANT CARE =====
+  {
+    id: 'hempopulent-flakes',
+    name: 'Hempopulent Bio-Power Nutrition Flakes',
+    category: 'plant-care',
+    subcategory: 'Nutrition Flakes',
+    size: '500g',
+    price: 349,
+    description: 'Hempopulent Organic Bio-Power Biological Stimulant Nutrient Micro Flakes. Made from 100% Cold Pressed Hemp Seed Meal — a multi-modal bio-stimulant that goes beyond typical organic fertilizers. Its high organic composition provides a unique blend of amino acids, peptides, and phytoactive metabolites that act as potent signaling molecules within plants. Suitable for Soil, Seed, Root, Leaves, Flower, and Fruit.',
+    shortDescription: 'Organic Bio-Power Biological Stimulant Nutrient Micro Flakes',
+    keyIngredients: ['100% Cold Pressed Hemp Seed Meal'],
+    benefits: [
+      'Maximize Nutrient Use Efficiency — Unlocks and optimizes existing soil nutrients for enhanced plant uptake',
+      'Harness Power from Nature — Provides a rich, direct source of amino acids and peptides for direct protein synthesis',
+      'Strengthen Environmental Resilience — Fortifies plants against drought, extreme temperatures, and salinity',
+      'Restore Long-term Soil Vitality — Enriches soil organic matter and stimulates diverse beneficial rhizosphere microbes',
+      'Deep vegetative growth and chlorophyll boost from Nitrogen (4-6%)',
+      'Strong root development and vigorous flowering from Phosphorus (1.5-2.5%)',
+      'Enhanced disease resistance from Potassium (1-2%)',
+    ],
+    usage: 'Dry Application: Apply to soil and water thoroughly immediately after. Indoor & Potted Plants: 1-2 tablespoons per 6-inch pot, lightly scratch into top inch of soil, every 4-6 weeks. Garden Beds: 1 cup per 10 sq ft, mix into top 2 inches. Trees & Shrubs: 1-2 cups around drip line, twice yearly (Spring & Fall).',
+    tags: ['Organic', 'Bio-Stimulant', 'NPK'],
+    npkAnalysis: {
+      nitrogen: '4.0-6.0%',
+      phosphorus: '1.5-2.5%',
+      potassium: '1.0-2.0%',
+      organicMatter: '75-85%',
+      protein: '30-35%',
+      cnRatio: '15:1 to 20:1',
+    },
+    applicationGuide: [
+      { type: '🪴 Indoor & Potted Plants', dosage: '1-2 Tablespoons per 6-inch pot. Lightly scratch into the top inch of soil.', frequency: 'Every 4-6 weeks during active growth.' },
+      { type: '🌱 Garden Beds & Vegetables', dosage: '1 Cup per 10 sq ft. Mix into top 2 inches of soil before sowing or transplanting.', frequency: 'At planting, then top-dress mid-season.' },
+      { type: '🌳 Trees & Shrubs', dosage: '1-2 Cups spread evenly around the drip line. Avoid direct contact with main trunk.', frequency: 'Twice a year (Early Spring & Late Fall).' },
+    ],
+    liquidActivation: {
+      steps: [
+        'Steep: Mix 2 tablespoons per 1 gallon of water. Let sit for 24 hours, stirring occasionally.',
+        'Strain & Apply: Use the liquid as a direct root drench or a fine foliar spray on Leaves, Flower, and Fruit.',
+        'Compost: Add the remaining settled organic matter directly to your soil or compost bin.',
+      ],
+    },
+  },
+  {
+    id: 'hempopulent-granules',
+    name: 'Hempopulent Bio-Power Bentonite Granules',
+    category: 'plant-care',
+    subcategory: 'Bentonite Granules',
+    size: '500g',
+    price: 399,
+    description: 'Hempopulent Bio-Power Bentonite Granules enriched with Hemp Seed Meal. Combines the nutrient-rich profile of Cold Pressed Hemp Seed Meal with Bentonite Clay — a natural soil conditioner that improves water retention, nutrient holding capacity, and soil structure. The slow-release granule format provides sustained nutrition over weeks, reducing application frequency while maximizing absorption.',
+    shortDescription: 'Bentonite Granules Enriched with Hemp | Slow-Release Soil Conditioner',
+    keyIngredients: ['Cold Pressed Hemp Seed Meal', 'Bentonite Clay'],
+    benefits: [
+      'Slow-release nutrition — Granules break down gradually over 4-6 weeks for sustained feeding',
+      'Superior water retention — Bentonite clay holds 3-5x its weight in water, reducing irrigation needs',
+      'Nutrient holding capacity — Cation exchange capacity (CEC) boosted by bentonite, preventing leaching',
+      'Soil structure improvement — Reduces compaction, improves aeration and drainage balance',
+      'Same NPK profile as Nutrition Flakes in a longer-lasting format',
+      'Ideal for lawns, garden beds, and large-scale applications',
+    ],
+    usage: 'Broadcast granules evenly over soil surface and water in. Indoor Plants: 1-2 tablespoons per pot, every 6-8 weeks. Garden Beds: 1.5 cups per 10 sq ft at planting. Lawns: 2 cups per 10 sq ft, twice yearly. Trees: 2-3 cups around drip line, Spring & Fall.',
+    tags: ['Slow-Release', 'Soil Conditioner', 'Granules'],
+    npkAnalysis: {
+      nitrogen: '4.0-6.0%',
+      phosphorus: '1.5-2.5%',
+      potassium: '1.0-2.0%',
+      organicMatter: '60-70%',
+      protein: '20-28%',
+      cnRatio: '15:1 to 20:1',
+    },
+    applicationGuide: [
+      { type: '🪴 Indoor & Potted Plants', dosage: '1-2 Tablespoons per pot. Scatter on surface and water in.', frequency: 'Every 6-8 weeks.' },
+      { type: '🌱 Garden Beds & Vegetables', dosage: '1.5 Cups per 10 sq ft. Mix into top 2 inches.', frequency: 'At planting and mid-season.' },
+      { type: '🌳 Trees & Shrubs', dosage: '2-3 Cups around drip line. Water thoroughly.', frequency: 'Early Spring & Late Fall.' },
+    ],
+    liquidActivation: {
+      steps: [
+        'Dissolve: Crush 3 tablespoons of granules and soak in 1 gallon of water for 24-48 hours.',
+        'Strain & Apply: Use the enriched liquid as a root drench or foliar spray.',
+        'Residue: Mix remaining clay-rich residue into soil as a conditioner.',
+      ],
+    },
+  },
+  {
+    id: 'hempopulent-tea',
+    name: 'Hempopulent Bio-Power Plant Tea Bags',
+    category: 'plant-care',
+    subcategory: 'Plant Tea Bags',
+    size: '10 Tea Bags (30g each)',
+    price: 299,
+    description: 'Hempopulent Bio-Power Plant Tea Bags — pre-measured, mess-free convenience for the modern gardener. Each biodegradable tea bag contains Cold Pressed Hemp Seed Meal and Bentonite Clay, ready to steep in water for an instant bio-stimulant liquid feed. Perfect for indoor plants, terrace gardens, and kitchen gardens. Just steep, strain, and spray — no measuring, no mixing, no mess.',
+    shortDescription: 'Pre-Measured Hemp Tea Bags | Steep & Spray Bio-Stimulant',
+    keyIngredients: ['Cold Pressed Hemp Seed Meal', 'Bentonite Clay', 'Biodegradable Filter Bag'],
+    benefits: [
+      'Pre-measured convenience — No weighing or mixing, just steep and spray',
+      'Mess-free application — No dust, no spillage, no measuring cups needed',
+      'Fast-acting liquid feed — Steeping extracts amino acids and peptides rapidly',
+      'Dual use — Use the liquid as foliar spray or root drench, then compost the bag',
+      'Biodegradable — Tea bags decompose in soil or compost bin',
+      'Perfect for indoor plants and terrace gardens',
+      'Travel-friendly — Take on the go for garden visits',
+    ],
+    usage: 'Steep 1 tea bag in 1 litre of water for 24 hours. Stir occasionally. Remove bag and use the liquid as a foliar spray or root drench. Compost the used tea bag. Apply every 2-3 weeks during active growth season.',
+    tags: ['Convenience', 'Tea Bags', 'Liquid Feed'],
+    npkAnalysis: {
+      nitrogen: '4.0-6.0%',
+      phosphorus: '1.5-2.5%',
+      potassium: '1.0-2.0%',
+      organicMatter: '65-75%',
+      protein: '25-30%',
+      cnRatio: '15:1 to 20:1',
+    },
+    applicationGuide: [
+      { type: '🪴 Indoor & Potted Plants', dosage: '1 Tea Bag steeped in 1L water. Use as foliar spray or root drench.', frequency: 'Every 2-3 weeks.' },
+      { type: '🌱 Garden Beds & Vegetables', dosage: '2-3 Tea Bags per 5L water. Apply as root drench.', frequency: 'Every 2 weeks during growth season.' },
+      { type: '🌳 Trees & Shrubs', dosage: '4-5 Tea Bags per 10L water. Drench around drip line.', frequency: 'Monthly during Spring & Summer.' },
+    ],
+  },
 ];
 
 export const smokableBlends: SmokableBlend[] = [
@@ -398,7 +522,7 @@ export const categories = [
     id: 'hair-care',
     name: 'Hair & Body Care',
     icon: '🧴',
-    description: '6 Products | Vijaya-Infused Ayurvedic Formulations',
+    description: '5 Products | Vijaya-Infused Ayurvedic Formulations',
     href: '/hair-care',
   },
   {
@@ -421,6 +545,13 @@ export const categories = [
     icon: '✨',
     description: '6 Products | Targeted Relief Through Ayurvedic Wisdom',
     href: '/wellness',
+  },
+  {
+    id: 'plant-care',
+    name: 'Plant Care',
+    icon: '🌱',
+    description: '3 Products | Hemp-Based Organic Bio-Stimulants',
+    href: '/plant-care',
   },
 ];
 

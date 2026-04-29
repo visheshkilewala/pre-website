@@ -6,6 +6,8 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const isPlantCare = product.category === 'plant-care';
+
   return (
     <Link
       href={`/${product.category}/${product.id}`}
@@ -18,7 +20,9 @@ export default function ProductCard({ product }: ProductCardProps) {
               {product.name}
             </h3>
             {product.tags[0] && (
-              <span className="inline-block bg-emerald-800 text-white text-[9px] px-2 py-0.5 rounded-full uppercase font-semibold tracking-wide">
+              <span className={`inline-block text-white text-[9px] px-2 py-0.5 rounded-full uppercase font-semibold tracking-wide ${
+                isPlantCare ? 'bg-green-700' : 'bg-emerald-800'
+              }`}>
                 {product.tags[0]}
               </span>
             )}
@@ -27,11 +31,17 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="flex items-center gap-3 text-xs text-gray-400">
             <span>{product.size}</span>
             <span>•</span>
-            <span>{product.vijayaMg}mg Vijaya ({product.vijayaType})</span>
+            {isPlantCare ? (
+              <span>NPK 4-6:1.5-2.5:1-2</span>
+            ) : (
+              <span>{product.vijayaMg}mg Vijaya ({product.vijayaType})</span>
+            )}
           </div>
         </div>
         <div className="text-right shrink-0">
-          <span className="text-lg font-bold text-emerald-700">{formatPrice(product.price)}</span>
+          <span className={`text-lg font-bold ${isPlantCare ? 'text-green-700' : 'text-emerald-700'}`}>
+            {formatPrice(product.price)}
+          </span>
           <p className="text-[10px] text-gray-400">+GST</p>
         </div>
       </div>
